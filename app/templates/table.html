@@ -1,0 +1,94 @@
+{% extends  'base.html'  %}
+{% block content %}
+<form class="row g-3" method="GET" action="{% url 'read_file' %}">
+<div class="d-flex flex-wrap">
+    <div class=" d-flex flex-wrap btn-group" role="group" aria-label="Basic checkbox toggle button group">
+
+        {%  for i in columns %}
+        <input type="checkbox" class="btn-check" id="btncheck{{ forloop.counter }}" name="columns" value="{{i}}" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btncheck{{ forloop.counter }}">{{i}}</label>
+        {% endfor %}
+    
+    <!--   
+        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btncheck2">Checkbox 2</label>
+      
+        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btncheck3">Checkbox 3</label> -->
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">ADD</button>
+      </div> 
+</div>
+</form>
+ 
+<nav  class="" aria-label="...">
+  <ul class="pagination pagination-sm">
+    <li class="page-item active ">
+      <a class="page-link"href="{% url 'pagination'%}?page={{ 1 }}&limit={{ 10 }}" tabindex="-1">1</a>
+    </li>
+      <li class="page-item active ">
+      <a class="page-link"href="{% url 'pagination'%}?page={{ 2 }}&limit={{ 10 }}" tabindex="-1">2</a>
+    </li>
+    <li class="page-item active ">
+      <a class="page-link"href="{% url 'pagination'%}?page={{ 3 }}&limit={{ 10 }}" tabindex="-1">3</a>
+    </li>
+    <li class="page-item active ">
+      <a class="page-link"href="{% url 'pagination'%}?page={{ 4 }}&limit={{ 10 }}" tabindex="-1">4</a>
+    </li>
+  </ul>
+</nav>
+
+<hr>
+ <div>
+    <table  class="table table-striped  table-hover">
+       
+ 
+       
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            {%  for i in data.columns %}
+            
+            <th scope="col">{{i}}</th>
+            {% endfor %}
+
+
+          </tr>
+        </thead> 
+
+        <tbody>
+
+            {%  for i in data.values %}
+            <tr>
+                <th scope="col">{{ forloop.counter }}</th>
+                {%  for ii in i %}
+                <th scope="row">{{ii}}</th>
+                {% endfor %}
+            </tr>
+
+            {% endfor %}
+
+     
+      
+         
+
+          
+
+       
+        </tbody>
+      </table>
+</div>
+
+
+
+{% endblock %}
+
+
+  <!-- <td>
+                <input type="text" class="form-control" name="first">
+            </td>
+            <td>
+                <input type="text" class="form-control" name="last">
+            </td>
+ -->

@@ -1,0 +1,20 @@
+{% extends  'base.html'  %}
+{% block content %}
+
+
+
+
+  <form class="row g-3" method="POST" action="{% url 'read_file' %}" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <br>
+    <div>
+        <input class="form-control form-control-lg" name="file" accept="xlsx" id="formFileLg" type="file">
+      </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">ADD</button>
+    </div>
+  </form>
+
+
+  
+{% endblock %}
