@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>welcome</h1>
+    <a href="{% url 'pramter1' 'saa' '332' %}">git -t1.1</a>
+    <br>
+    <a href="{% url 'pramter1' name='www' id='1452' %}">git -t1.2</a>
+
+    <br>
+    <a href="{% url 'pramter2' %}?name=ffd&id=10">git -t2</a>
+    <!-- {% url 'pramter2' %}?get_parameter_name={{ tag_name }}" -->
+    <br>
+    <br>
+    <br>
+    <form action="{% url 'pramter3' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="name" value="kkkkkkkkkk">  <!-- value="{{ source.title }}" -->
+        <!-- <input type="hidden" name="id" value="">  value="{{ source.title }}" -->
+
+        <input type="submit" value="Start"">
+
+    </form>
+
+
+    <br>
+
+
+
+
+</body>
+</html>
