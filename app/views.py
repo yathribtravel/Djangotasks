@@ -4,7 +4,7 @@ from django.http import HttpResponse
 def home(request):
     # return HttpResponse("welcome")
     context = {"message": "Hello from Django!"}
-    return render(request, "home.html", context)
+    return render(request, "t1.html", context)
 
 
 

@@ -1,0 +1,31 @@
+import os
+import webbrowser
+import asyncio
+
+
+# RUNSERVER
+async def runserver():
+    path = "D:\Your\Django\Project\Full\Path\SimpleBlog"
+    os.chdir(path)
+    os.system("py manage.py runserver")
+
+# OPEN BROWSER
+def openproject():
+    webbrowser.open_new_tab("http://127.0.0.1:8000/index")
+
+# EXECUTE PROGRAM
+async def main():
+    task1 = asyncio.create_task(runserver())
+    openproject()
+    await task1
+
+
+
+asyncio.run(main())
+----------------------------------------------
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "server.settings")
+
+from django.core.management import call_command
+from django.core.wsgi import get_wsgi_application 
+application = get_wsgi_application()
+call_command('runserver',  '127.0.0.1:8000')
