@@ -6,35 +6,36 @@ def home(request):
     return render(request,"home.html")
 
 
-data=""
-temp=""
-def read_file(request):
-    global data
-    global temp
-    if request.method=="POST":
 
+def read_file(request):
+  
+    if request.method=="POST":
+        request.session.flush()
         # file=request.POST["file"];
         my_uploaded_file = request.FILES['file']
         if  "csv"  in my_uploaded_file.name   :
-             data= pandas.read_csv(my_uploaded_file)
+            request.session["data"]= pandas.read_csv(my_uploaded_file).to_json()
         elif  "xlsx" in my_uploaded_file.name :    
-            data= pandas.read_excel(my_uploaded_file)
+            request.session["data"]= pandas.read_excel(my_uploaded_file).to_json()
 
-        temp=data.head(10)     
-            
+        #    request.session["data"]
+        # print(request.session.get("data"))
+
+        temp= pandas.read_json(request.session.get("data")).head(10)     
+        # print(temp)
        
 
     if request.method=="GET":
 
         
         l= request.GET.getlist('columns')
-        # print(l)
-    
-        temp=data[l].head(10)
+        request.session["columns"]=l
+
+        # print("mmm", request.session.get("columns"))
+
+        temp=pandas.read_json(request.session.get("data"))[list(request.session.get("columns"))].head(10)
      
-
-
-    return render(request,"table.html",{"data":temp,"columns":data.columns})#.to_html()
+    return render(request,"table.html",{"data":temp,"columns":pandas.read_json(request.session.get("data")).columns})#.to_html()
 
 
 
@@ -47,19 +48,19 @@ def read_file(request):
     # forloop.revcounter0
 
 def pagination(request):
-    global data
-    global temp
+    # global data
+    # global temp
     page=int(request.GET.get("page"))
     limit=int(request.GET.get("limit"))
 
     a=(page-1)*limit
     b=a+(limit-1)
-    data2=data.copy()
-    temp=data2.loc[a:b,temp.columns]
+    data2=pandas.read_json(request.session.get("data")).copy()
+    temp=data2.loc[a:b,list(request.session.get("columns"))]
     print(str(page),str(limit),str(a),str(b))
     # print(temp)
     # print(data2)
-    return render(request,"table.html",{"data":temp,"columns":data.columns})#.to_html()
+    return render(request,"table.html",{"data":temp,"columns":pandas.read_json(request.session.get("data")).columns})#.to_html()
 
 # def read_file_by_columns (request):
 #        if request.method=="POST":
