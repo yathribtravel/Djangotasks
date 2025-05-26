@@ -4,11 +4,12 @@ from django.http import HttpResponse
 def home(request):
     # return HttpResponse("welcome")
     context = {"message": "Hello from Django!"}
-    return render(request, "t1.html", context)
+    return render(request, "home.html", context)
 
 
 
 def about(request):
         return render(request, "about.html")
+
 def contact_as(request):
         return render(request, "contact_as.html")
