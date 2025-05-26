@@ -1,0 +1,19 @@
+pip install pymongo[snappy,gssapi,srv,tls]
+pip install dnspython
+pip install mongoengine
+
+
+
+
+yathribtravelsystem
+hlmX7YK4cD8td8wC
+
+mongodb+srv://yathribtravelsystem:hlmX7YK4cD8td8wC@cluster0.ilrd5xy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+---------------------------------------------------
+
+
+pip install pymongo==3.12.3
+
+pip install pytz
+

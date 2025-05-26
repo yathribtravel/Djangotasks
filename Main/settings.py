@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "app",
 ]
 
 MIDDLEWARE = [
@@ -73,14 +74,41 @@ WSGI_APPLICATION = 'Main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+import mongoengine
+# mongoengine.connect(db=db_name, host=hostname, username=username, password=pwd)
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            'host': 'mongodb+srv://yathribtravelsystem:hlmX7YK4cD8td8wC@cluster0.ilrd5xy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', # Replace with your MongoDB server address
+            'port': 27017,               # Replace with your MongoDB port if different
+            'username': 'yathribtravelsystem', # Replace with your MongoDB username (optional)
+            'password': 'hlmX7YK4cD8td8wC', # Replace with your MongoDB password (optional)
+            # 'authSource': 'your_auth_database', # Replace with your MongoDB authentication database (optional)
+        },
+        'NAME': 'test',
     }
 }
 
-
+# DATABASES = {
+#         'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'test',
+#         'HOST': 'mongodb+srv://yathribtravelsystem:hlmX7YK4cD8td8wC@cluster0.ilrd5xy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+#         'USER': 'yathribtravelsystem',
+#         'PASSWORD': 'hlmX7YK4cD8td8wC',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
