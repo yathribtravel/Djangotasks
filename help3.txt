@@ -1,0 +1,26 @@
+https://myaccount.google.com/apppasswords
+
+
+https://forum.djangoproject.com/t/socket-gaierror-errno-10109-getaddrinfo-failed/32100
+
+
+EMAIL_HOST_USER = 'yathribtravelsystem@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'yhfv ykqf atus xglt'  # Your email password or app password
+
+
+
+---------------------------
+Getting response from this so I don’t think this issue is causing by firewall
+
+import smtplib
+
+try:
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    print("Connection successful")
+    server.quit()
+except Exception as e:
+    print("Failed to connect:", e)
+
+------------------------------------
+https://www.youtube.com/watch?v=tN2k08Gucto&t=241s    
