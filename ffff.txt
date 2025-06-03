@@ -1,0 +1,22 @@
+{{ user.groups.all|join:"," }}
+{% if "groupname" in user.groups.all|join:"," %}
+{% if request.user.groups.all.0.name == "Book" %}
+
+
+
+
+
+
+
+---------------------------------
+-----views.py----
+CustomUser(AbstractUser):
+    # Your user stuff
+
+    def is_manager(self):
+        return self.groups.filter(name='Management').exists()
+----templates---
+{% if user.is_manager %}
+    {# Do your thing #}
+{% endif %}
+---------------------------------
